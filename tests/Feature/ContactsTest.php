@@ -19,10 +19,7 @@ class ContactsTest extends TestCase
         $data = [
             'first_name' => 'foobar',
             'last_name' => 'baz',
-            'email_addresses' => [
-                0 => 'foo@foo.com',
-                1 => 'bar@bar.com',
-            ],
+            'email_addresses' => ['foo@foo.com', 'bar@bar.com'],
             'primary_email' => 1,
         ];
 
@@ -46,10 +43,7 @@ class ContactsTest extends TestCase
         $data = [
             'first_name' => 'foo',
             'last_name' => 'bar',
-            'email_addresses' => [
-                0 => 'foo@foo.com',
-                1 => 'foo@foo.com',
-            ],
+            'email_addresses' => ['foo@foo.com', 'foo@foo.com'],
             'primary_email' => 0,
         ];
 
@@ -65,9 +59,7 @@ class ContactsTest extends TestCase
         $data = [
             'first_name' => 'foo',
             'last_name' => 'bar',
-            'email_addresses' => [
-                $contact1->primary_email,
-            ],
+            'email_addresses' => [$contact1->primary_email],
             'primary_email' => 0,
         ];
 
