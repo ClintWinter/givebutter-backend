@@ -1,18 +1,23 @@
 <?php
 
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactEmailController;
+use App\Http\Controllers\ContactMergeController;
+use App\Http\Controllers\ContactPhoneController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::prefix('contacts')->group(function () {
+    Route::get('new', [ContactController::class, 'create']);
+    Route::post('new', [ContactController::class, 'store']);
+    Route::get('{contact}/edit', [ContactController::class, 'edit']);
+    Route::put('{contact}/edit', [ContactController::class, 'update']);
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::put('{contact}/add-email', [ContactEmailController::class, 'store']);
+    Route::delete('{contact}/delete-email', [ContactEmailController::class, 'destroy']);
+
+    Route::put('{contact}/add-phone', [ContactPhoneController::class, 'store']);
+    Route::delete('{contact}/delete-phone', [ContactPhoneController::class, 'destroy']);
+
+    Route::post('merge', [ContactMergeController::class, 'store']);
 });
